@@ -1,0 +1,528 @@
+.application-shell {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  padding: 0 max(32px, calc((100vw - 1120px) / 2));
+  background:
+    radial-gradient(ellipse at 50% 0, rgba(242, 160, 73, .12), transparent 48%),
+    var(--cream);
+}
+
+.application-header,
+.application-footer {
+  display: flex;
+  min-height: 82px;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--line);
+}
+
+.application-home-link {
+  color: var(--muted);
+  font-size: 12px;
+  text-decoration: none;
+}
+
+.application-home-link:hover {
+  color: var(--flame);
+}
+
+.application-home-link span {
+  margin-left: 7px;
+}
+
+.application-main {
+  width: min(100%, 850px);
+  flex: 1;
+  align-self: center;
+  padding: 62px 0 70px;
+}
+
+.application-hero {
+  padding: 15px 0 55px;
+  text-align: center;
+}
+
+.application-hero h1 {
+  max-width: 700px;
+  margin: 24px auto 15px;
+  font-family: var(--display);
+  font-size: clamp(52px, 7vw, 76px);
+  font-weight: 400;
+  letter-spacing: -.055em;
+  line-height: .99;
+}
+
+.application-hero h1 em,
+.application-panel h1 em {
+  color: var(--flame);
+  font-weight: 400;
+}
+
+.application-eyebrow {
+  justify-content: center;
+}
+
+.application-lede {
+  max-width: 515px;
+  margin: 0 auto;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.application-proof {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 29px;
+  color: var(--muted);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: .1em;
+}
+
+.application-proof span {
+  color: var(--flame);
+}
+
+.application-proof i {
+  width: 23px;
+  height: 1px;
+  background: var(--line);
+}
+
+.track-section {
+  padding-top: 30px;
+  border-top: 1px solid var(--line);
+}
+
+.track-section-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.form-kicker {
+  color: var(--rust);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .15em;
+}
+
+.form-kicker > span,
+.step-count > span {
+  color: var(--muted);
+}
+
+.track-section-heading h2 {
+  margin: 8px 0 0;
+  font-family: var(--display);
+  font-size: 31px;
+  font-weight: 400;
+  letter-spacing: -.025em;
+}
+
+.step-count {
+  padding-bottom: 5px;
+  color: var(--flame);
+  font-size: 11px;
+}
+
+.track-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-top: 25px;
+}
+
+.track-option {
+  position: relative;
+  display: flex;
+  min-height: 252px;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 24px;
+  border: 1px solid var(--line);
+  background: rgba(255, 249, 240, .72);
+  color: var(--ember);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color .2s, background-color .2s, transform .2s;
+}
+
+.track-option:hover {
+  transform: translateY(-3px);
+  border-color: var(--flame);
+  background: var(--paper);
+}
+
+.track-option-label {
+  color: var(--rust);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+
+.track-option-icon {
+  position: absolute;
+  top: 21px;
+  right: 23px;
+  color: var(--amber);
+  font-size: 29px;
+}
+
+.track-option-tech .track-option-icon {
+  color: var(--flame);
+}
+
+.track-option-title {
+  margin-top: 27px;
+  font-family: var(--display);
+  font-size: 26px;
+  line-height: 1.15;
+}
+
+.track-option-description {
+  max-width: 280px;
+  margin-top: 9px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.75;
+}
+
+.track-option-link {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 19px;
+  border-top: 1px solid var(--line);
+  color: var(--flame);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.privacy-note {
+  margin: 18px 0 0;
+  color: var(--muted);
+  font-size: 10px;
+  text-align: center;
+}
+
+.application-panel {
+  width: min(100%, 570px);
+  margin: 0 auto;
+}
+
+.back-link {
+  display: block;
+  margin: 0 0 37px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--flame);
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.back-link span {
+  padding-left: 5px;
+  color: var(--muted);
+}
+
+.application-panel h1 {
+  margin: 10px 0 11px;
+  font-family: var(--display);
+  font-size: clamp(42px, 6vw, 58px);
+  font-weight: 400;
+  letter-spacing: -.045em;
+  line-height: 1.08;
+}
+
+.panel-description {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.application-form {
+  display: grid;
+  gap: 9px;
+  margin-top: 31px;
+}
+
+.application-form label {
+  margin-top: 11px;
+  color: var(--ember);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.application-form input,
+.application-form textarea {
+  width: 100%;
+  padding: 13px 14px;
+  border: 1px solid rgba(103, 48, 21, .2);
+  border-radius: 2px;
+  background: rgba(255, 249, 240, .85);
+  color: var(--ember);
+  font-size: 13px;
+}
+
+.application-form input::placeholder,
+.application-form textarea::placeholder {
+  color: #aa917d;
+}
+
+.application-form input:focus,
+.application-form textarea:focus {
+  border-color: var(--flame);
+}
+
+.application-submit {
+  width: 100%;
+  justify-content: space-between;
+  margin-top: 14px;
+}
+
+.form-privacy {
+  margin-top: 2px;
+}
+
+.applicant-greeting {
+  margin: 21px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.prompt-panel h1 {
+  margin-top: 4px;
+}
+
+.prompt-card {
+  margin-top: 27px;
+  padding: 22px 23px 24px;
+  border-left: 3px solid var(--amber);
+  background: var(--paper);
+}
+
+.prompt-card-top {
+  display: flex;
+  justify-content: space-between;
+  color: var(--rust);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .12em;
+}
+
+.prompt-card-top span + span {
+  color: var(--amber);
+  font-size: 16px;
+}
+
+.prompt-card > p {
+  margin: 14px 0 0;
+  font-family: var(--display);
+  font-size: 23px;
+  line-height: 1.4;
+}
+
+.timer-display {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 18px;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.timer-display > span:first-child {
+  color: var(--flame);
+  font-size: 14px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.timer-urgent > span:first-child {
+  color: #9e2415;
+}
+
+.response-form {
+  margin-top: 19px;
+}
+
+.application-form textarea {
+  resize: vertical;
+  min-height: 150px;
+  line-height: 1.7;
+}
+
+.confirmation-panel {
+  padding: 38px 0;
+  text-align: center;
+}
+
+.confirmation-symbol {
+  display: grid;
+  width: 56px;
+  height: 56px;
+  place-items: center;
+  margin: 0 auto 22px;
+  border-radius: 50%;
+  background: var(--flame);
+  color: var(--paper);
+  font-size: 27px;
+}
+
+.confirmation-panel h1 {
+  margin-top: 15px;
+}
+
+.confirmation-panel .panel-description {
+  max-width: 400px;
+  margin: 13px auto 25px;
+}
+
+.response-recap {
+  margin: 0 0 24px;
+  padding: 19px 21px;
+  border-left: 3px solid var(--amber);
+  background: var(--paper);
+  text-align: left;
+}
+
+.response-recap > span {
+  color: var(--rust);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .13em;
+}
+
+.response-recap > p {
+  margin: 10px 0 0;
+  color: var(--ember);
+  font-size: 13px;
+  line-height: 1.8;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.application-footer {
+  min-height: 76px;
+  border-top: 1px solid var(--line);
+  border-bottom: 0;
+}
+
+.application-footer > span {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.application-footer .brand {
+  font-size: 14px;
+}
+
+.application-footer .brand-gem {
+  width: 18px;
+  height: 24px;
+}
+
+@media (max-width: 700px) {
+  .application-shell {
+    padding-inline: 20px;
+  }
+
+  .application-header {
+    min-height: 68px;
+  }
+
+  .application-main {
+    padding: 42px 0 54px;
+  }
+
+  .application-hero {
+    padding: 8px 0 38px;
+  }
+
+  .application-hero h1 {
+    font-size: clamp(48px, 12vw, 66px);
+  }
+
+  .application-lede {
+    font-size: 13px;
+  }
+
+  .application-proof {
+    flex-wrap: wrap;
+    gap: 8px;
+    font-size: 8px;
+  }
+
+  .application-proof i {
+    width: 12px;
+  }
+
+  .track-section-heading h2 {
+    font-size: 26px;
+  }
+
+  .track-grid {
+    gap: 12px;
+  }
+
+  .track-option {
+    min-height: 228px;
+    padding: 18px;
+  }
+
+  .track-option-title {
+    font-size: 22px;
+  }
+
+  .track-option-description {
+    font-size: 11px;
+  }
+
+  .application-footer {
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 16px 0;
+  }
+}
+
+@media (max-width: 470px) {
+  .application-home-link {
+    font-size: 10px;
+  }
+
+  .application-proof {
+    max-width: 310px;
+    margin-inline: auto;
+  }
+
+  .track-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .track-option {
+    min-height: 205px;
+  }
+
+  .track-section-heading h2 {
+    max-width: 230px;
+    font-size: 23px;
+  }
+
+  .application-footer > span:nth-child(2) {
+    display: none;
+  }
+
+  .application-panel h1 {
+    font-size: 44px;
+  }
+}
