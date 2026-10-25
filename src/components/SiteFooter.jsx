@@ -6,14 +6,14 @@ export default function SiteFooter() {
       <div className="container footer-inner">
         <div>
           <Brand />
-          <p className="footer-tagline">Rise from here.</p>
+          <p className="footer-tagline">For the figuring-it-out stage.</p>
         </div>
         <div className="footer-links">
-          <a href="/#why">Why Riseup.AI</a>
-          <a href="/#path">How it works</a>
-          <a href="/intern.html">Get started</a>
+          <a href="/#why">Why we made this</a>
+          <a href="/#path">The quick version</a>
+          <a href="/intern.html">Try a prompt</a>
         </div>
-        <span className="footer-copy">© 2026 Riseup.AI. Built for what’s next.</span>
+        <span className="footer-copy">© 2026 Riseup.AI</span>
       </div>
     </footer>
   );

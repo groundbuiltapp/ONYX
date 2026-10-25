@@ -1,43 +1,42 @@
-import bannerImage from '../../banner.png';
 import Brand, { BrandMark } from '../components/Brand.jsx';
 import SiteFooter from '../components/SiteFooter.jsx';
 
 const steps = [
   {
     number: '01',
-    title: 'Show what you’re building',
+    title: 'Pick what sounds interesting',
     description:
-      'Share the work, goals, and direction you care about. Find people and companies looking for exactly that.',
+      'Choose business or technology. Not sure yet? Pick the one you’re curious about today.',
   },
   {
     number: '02',
-    title: 'Get in the room',
+    title: 'Try a quick prompt',
     description:
-      'Join the networks and conversations where hiring managers, founders, and peers are already talking.',
+      'Get one short, real-world question. There’s no perfect answer—just show how you think.',
   },
   {
     number: '03',
-    title: 'Move forward',
+    title: 'See what’s out there',
     description:
-      'Turn a conversation into a role, a project, or a partnership. Your next step starts with a real connection.',
+      'Browse a few sample internships and get ideas for the kinds of roles you could explore.',
   },
 ];
 
 const audiences = [
   {
     number: '01',
-    title: 'Emerging talent',
-    description: 'Students and early-career professionals ready for access, not another application queue.',
+    title: 'Still in school',
+    description: 'Get a feel for different kinds of work before you have it all figured out.',
   },
   {
     number: '02',
-    title: 'Companies',
-    description: 'Teams looking to meet people with real momentum before everyone else does.',
+    title: 'Just getting started',
+    description: 'Try a prompt, find a direction, and take one small step toward your first role.',
   },
   {
     number: '03',
-    title: 'Networks',
-    description: 'Communities and mentors opening their circles to the next generation.',
+    title: 'Changing your mind',
+    description: 'Curiosity counts. Explore something new without making a big commitment.',
   },
 ];
 
@@ -56,12 +55,12 @@ export default function LandingPage() {
         <div className="container nav-inner">
           <Brand />
           <nav className="main-nav" aria-label="Main navigation">
-            <a href="#why">Why Riseup.AI</a>
-            <a href="#path">How it works</a>
+            <a href="#why">Why we made this</a>
+            <a href="#path">The quick version</a>
             <a href="#who">Who it’s for</a>
           </nav>
           <a className="button button-small nav-cta" href="/intern.html">
-            Get started <ArrowIcon />
+            Try a prompt <ArrowIcon />
           </a>
         </div>
       </header>
@@ -70,56 +69,60 @@ export default function LandingPage() {
         <section className="hero">
           <div className="container hero-layout">
             <div className="hero-copy">
-              <div className="eyebrow"><BrandMark className="brand-gem eyebrow-mark" /> A new way in</div>
-              <h1>Make your next move <em>mean something.</em></h1>
+              <div className="eyebrow"><BrandMark className="brand-gem eyebrow-mark" /> Thinking about what comes after school?</div>
+              <h1>Not sure what’s next? <em>Start here.</em></h1>
               <p className="hero-lede">
-                Real access to the people and places that move careers forward. No applications into the void.
+                Try a one-minute prompt, explore a few work paths, and see what feels like you.
               </p>
               <div className="hero-actions">
                 <a className="button" href="/intern.html">
-                  Find your starting point <ArrowIcon />
+                  Try a one-minute prompt <ArrowIcon />
                 </a>
-                <a className="text-link" href="#why">Discover Riseup.AI</a>
+                <a className="text-link" href="#path">How it works</a>
               </div>
               <div className="hero-note">
                 <BrandMark className="brand-gem note-mark" />
-                <span>For the ones already building what’s next.</span>
+                <span>For students, new grads, and the still-figuring-it-out crowd.</span>
               </div>
             </div>
             <div className="hero-art">
-              <img src={bannerImage} alt="A glowing amber gemstone against a warm, sunlit backdrop" />
-              <div className="art-caption">
-                <span>YOUR NEXT CHAPTER</span>
-                <span>STARTS HERE ↗</span>
+              <div className="starter-board">
+                <div className="starter-board-heading">
+                  <span className="starter-board-kicker">TRY A QUESTION LIKE THIS</span>
+                  <p>Your student club has a small budget and one week to get more people to an event. What would you try first?</p>
+                </div>
+                <div className="starter-board-footer">
+                  <span>60 seconds</span>
+                  <span>No perfect answer</span>
+                </div>
               </div>
-              <div className="art-stamp" aria-hidden="true">O</div>
             </div>
           </div>
           <div className="hero-bottom container">
-            <span>ACCESS, WITH INTENTION</span>
-            <span>01 - 03</span>
+            <span>NO EXPERIENCE REQUIRED</span>
+            <span>TAKE IT AT YOUR OWN PACE</span>
           </div>
         </section>
 
         <section className="intro-section section-pad" id="why">
           <div className="container intro-grid">
-            <div className="section-label"><span>01</span> WHY RISEUP.AI</div>
+            <div className="section-label"><span>01</span> WHY WE MADE THIS</div>
             <div className="intro-content">
-              <h2>The old way asks you to wait. <em>We’d rather open a door.</em></h2>
+              <h2>Getting started can feel like a lot. <em>This part doesn’t have to.</em></h2>
               <p>
-                Early careers shouldn’t be built on cold applications and lucky timing. Riseup.AI brings
-                emerging talent closer to the people, companies, and communities that can help them
-                make their next move.
+                Looking for a first job or internship can feel confusing, especially when everyone seems
+                to know what they’re doing already. Try a short prompt and explore a couple of work areas.
+                No résumé or big decision needed.
               </p>
-              <a className="inline-link" href="/intern.html">Take the first step <ArrowIcon /></a>
+              <a className="inline-link" href="/intern.html">Give it a try <ArrowIcon /></a>
               <div className="difference">
                 <div>
-                  <span className="difference-kicker">THE USUAL PATH</span>
-                  <p>Endless listings. Silence after send. Connections you’re expected to already have.</p>
+                  <span className="difference-kicker">YOU DON’T NEED</span>
+                  <p>A perfect résumé, years of experience, or a friend who knows someone.</p>
                 </div>
                 <div className="difference-now">
-                  <span className="difference-kicker">A MORE HUMAN WAY</span>
-                  <p>Real conversations. Relevant opportunities. A network that grows with you.</p>
+                  <span className="difference-kicker">JUST BRING</span>
+                  <p>A little curiosity. You can figure out the rest as you go.</p>
                 </div>
               </div>
             </div>
@@ -128,10 +131,10 @@ export default function LandingPage() {
 
         <section className="path-section section-pad" id="path">
           <div className="container">
-            <div className="section-label"><span>02</span> YOUR WAY FORWARD</div>
+            <div className="section-label"><span>02</span> HOW IT WORKS</div>
             <div className="path-heading">
-              <h2>Good things happen<br />when you’re <em>in the room.</em></h2>
-              <p>A clearer path from showing up to moving forward.</p>
+              <h2>Small steps count.<br /><em>Here’s the first one.</em></h2>
+              <p>No big application. Just a quick way to try something on for size.</p>
             </div>
             <div className="path-list">
               {steps.map((step) => (
@@ -148,10 +151,10 @@ export default function LandingPage() {
 
         <section className="audience-section section-pad" id="who">
           <div className="container">
-            <div className="section-label"><span>03</span> MADE TO MOVE TOGETHER</div>
+            <div className="section-label"><span>03</span> MADE FOR THE EARLY DAYS</div>
             <div className="audience-heading">
-              <h2>There’s room for <em>your kind of ambition.</em></h2>
-              <p>Riseup.AI connects the people looking for a way in with those ready to make one.</p>
+              <h2>Wherever you’re at, <em>you can start here.</em></h2>
+              <p>There’s no one right timeline for figuring out what you want to do.</p>
             </div>
             <div className="audience-grid">
               {audiences.map((audience) => (
@@ -168,12 +171,11 @@ export default function LandingPage() {
         <section className="closing-section">
           <div className="container">
             <div className="closing-card">
-              <div className="closing-orbit" aria-hidden="true">✳</div>
-              <span className="closing-kicker">YOUR NEXT MOVE STARTS HERE</span>
-              <h2>Don’t wait for a way in.<br /><em>Make one.</em></h2>
-              <p>Start with one minute. See where it can take you.</p>
+              <span className="closing-kicker">NO PERFECT PLAN NEEDED</span>
+              <h2>Curious about what’s next?<br /><em>Start with a minute.</em></h2>
+              <p>Pick a prompt, give it a go, and see how it feels.</p>
               <a className="button button-light" href="/intern.html">
-                Meet your next step <ArrowIcon />
+                Give it a try <ArrowIcon />
               </a>
             </div>
           </div>

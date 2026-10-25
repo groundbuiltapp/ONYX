@@ -1,55 +1,38 @@
 import Brand from '../components/Brand.jsx';
-
-const internships = {
-  business: [
-    { title: 'Growth Marketing Intern', company: 'Northstar Labs', location: 'New York, NY' },
-    { title: 'Business Development Intern', company: 'Common Ground', location: 'Remote' },
-    { title: 'Partnerships Intern', company: 'Fieldwork', location: 'Austin, TX' },
-  ],
-  tech: [
-    { title: 'AI Engineering Intern', company: 'Signal Works', location: 'Remote' },
-    { title: 'Associate Product Intern', company: 'Brightside', location: 'San Francisco, CA' },
-    { title: 'Software Engineering Intern', company: 'Northstar Labs', location: 'New York, NY' },
-  ],
-};
+import InternshipExamples from '../components/InternshipExamples.jsx';
+import { careerOptions, getCareerField } from '../data/careerOptions.js';
 
 function ApplicationHeader() {
   return (
     <header className="application-header">
       <Brand />
-      <a className="application-home-link" href="/intern.html">Back to your pitch <span aria-hidden="true">↗</span></a>
+      <a className="application-home-link" href="/intern.html">Back to the prompt <span aria-hidden="true">↗</span></a>
     </header>
   );
 }
 
 export default function InternshipsPage() {
-  const requestedTrack = new URLSearchParams(window.location.search).get('track');
-  const track = requestedTrack === 'tech' ? 'tech' : 'business';
-  const trackLabel = track === 'business' ? 'Business' : 'Technology';
+  const params = new URLSearchParams(window.location.search);
+  const requestedTrack = params.get('track');
+  const track = careerOptions[requestedTrack] ? requestedTrack : 'business';
+  const requestedField = params.get('field');
+  const field = getCareerField(track, requestedField);
 
   return (
     <div className="application-shell">
       <ApplicationHeader />
       <main className="application-main">
         <section className="application-panel internships-panel">
-          <span className="form-kicker">{trackLabel.toUpperCase()} OPPORTUNITIES</span>
-          <h1>Three places to <em>start.</em></h1>
-          <p className="panel-description">Sample internships to help you explore what’s next.</p>
-          <div className="internship-list">
-            {internships[track].map((internship) => (
-              <article className="internship-card" key={internship.title}>
-                <h2>{internship.title}</h2>
-                <p>{internship.company}</p>
-                <span>{internship.location}</span>
-              </article>
-            ))}
-          </div>
-          <a className="back-link internship-back-link" href="/intern.html">← Back to Riseup.AI</a>
+          <span className="form-kicker">{careerOptions[track].label.toUpperCase()} · {field.label.toUpperCase()}</span>
+          <h1>Five ideas to <em>look into.</em></h1>
+          <p className="panel-description">Examples picked for {field.label.toLowerCase()}. They’re here to spark ideas, not represent live job openings.</p>
+          <InternshipExamples internships={field.internships} />
+          <a className="back-link internship-back-link" href="/intern.html">← Back to the prompt</a>
         </section>
       </main>
       <footer className="application-footer">
         <Brand />
-        <span>Built for people who build things.</span>
+        <span>For the early steps, too.</span>
         <span>© 2026 Riseup.AI</span>
       </footer>
     </div>

@@ -3,9 +3,7 @@
   min-height: 100vh;
   flex-direction: column;
   padding: 0 max(32px, calc((100vw - 1120px) / 2));
-  background:
-    radial-gradient(ellipse at 50% 0, rgba(242, 160, 73, .12), transparent 48%),
-    var(--cream);
+  background: var(--cream);
 }
 
 .application-header,
@@ -47,20 +45,26 @@
   max-width: 700px;
   margin: 24px auto 15px;
   font-family: var(--display);
-  font-size: clamp(52px, 7vw, 76px);
-  font-weight: 400;
-  letter-spacing: -.055em;
-  line-height: .99;
+  font-size: clamp(46px, 6vw, 68px);
+  font-weight: 700;
+  letter-spacing: -.05em;
+  line-height: 1.02;
 }
 
 .application-hero h1 em,
 .application-panel h1 em {
   color: var(--flame);
-  font-weight: 400;
+  font-style: normal;
+  font-weight: 700;
 }
 
 .application-eyebrow {
   justify-content: center;
+}
+
+.application-eyebrow span {
+  background: var(--flame);
+  box-shadow: 0 0 0 4px rgba(181, 68, 15, .11);
 }
 
 .application-lede {
@@ -80,7 +84,7 @@
   color: var(--muted);
   font-size: 9px;
   font-weight: 600;
-  letter-spacing: .1em;
+  letter-spacing: .04em;
 }
 
 .application-proof span {
@@ -109,7 +113,7 @@
   color: var(--rust);
   font-size: 9px;
   font-weight: 700;
-  letter-spacing: .15em;
+  letter-spacing: .08em;
 }
 
 .form-kicker > span,
@@ -121,7 +125,7 @@
   margin: 8px 0 0;
   font-family: var(--display);
   font-size: 31px;
-  font-weight: 400;
+  font-weight: 600;
   letter-spacing: -.025em;
 }
 
@@ -146,7 +150,8 @@
   align-items: flex-start;
   padding: 24px;
   border: 1px solid var(--line);
-  background: rgba(255, 249, 240, .72);
+  border-radius: 16px;
+  background: var(--paper);
   color: var(--ember);
   text-align: left;
   cursor: pointer;
@@ -163,26 +168,15 @@
   color: var(--rust);
   font-size: 9px;
   font-weight: 700;
-  letter-spacing: .13em;
+  letter-spacing: .06em;
   text-transform: uppercase;
-}
-
-.track-option-icon {
-  position: absolute;
-  top: 21px;
-  right: 23px;
-  color: var(--amber);
-  font-size: 29px;
-}
-
-.track-option-tech .track-option-icon {
-  color: var(--flame);
 }
 
 .track-option-title {
   margin-top: 27px;
   font-family: var(--display);
   font-size: 26px;
+  font-weight: 600;
   line-height: 1.15;
 }
 
@@ -238,7 +232,7 @@
   margin: 10px 0 11px;
   font-family: var(--display);
   font-size: clamp(42px, 6vw, 58px);
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: -.045em;
   line-height: 1.08;
 }
@@ -264,7 +258,8 @@
   justify-content: space-between;
   padding: 0 17px;
   border: 1px solid var(--line);
-  background: rgba(255, 249, 240, .72);
+  border-radius: 12px;
+  background: var(--paper);
   color: var(--ember);
   font: inherit;
   font-size: 12px;
@@ -299,9 +294,9 @@
 .application-form textarea {
   width: 100%;
   padding: 13px 14px;
-  border: 1px solid rgba(103, 48, 21, .2);
-  border-radius: 2px;
-  background: rgba(255, 249, 240, .85);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--paper);
   color: var(--ember);
   font-size: 13px;
 }
@@ -339,6 +334,7 @@
 .prompt-card {
   margin-top: 27px;
   padding: 22px 23px 24px;
+  border-radius: 0 14px 14px 0;
   border-left: 3px solid var(--amber);
   background: var(--paper);
 }
@@ -357,11 +353,18 @@
   font-size: 16px;
 }
 
+.prompt-card-top .prompt-mark {
+  width: 9px;
+  height: 15px;
+  flex: none;
+}
+
 .prompt-card > p {
   margin: 14px 0 0;
   font-family: var(--display);
-  font-size: 23px;
-  line-height: 1.4;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.55;
 }
 
 .timer-display {
@@ -402,8 +405,8 @@
   place-items: center;
   margin: 0 auto 22px;
   border-radius: 50%;
-  background: var(--flame);
-  color: var(--paper);
+  background: var(--amber);
+  color: var(--ember);
   font-size: 27px;
 }
 
@@ -416,9 +419,24 @@
   margin: 13px auto 25px;
 }
 
+.confirmation-internships {
+  margin-bottom: 24px;
+  text-align: left;
+}
+
+.confirmation-internships h2 {
+  margin: 9px 0 5px;
+  font-size: 23px;
+}
+
+.confirmation-internships > .panel-description {
+  margin: 0;
+}
+
 .response-recap {
   margin: 0 0 24px;
   padding: 19px 21px;
+  border-radius: 0 12px 12px 0;
   border-left: 3px solid var(--amber);
   background: var(--paper);
   text-align: left;
@@ -449,14 +467,15 @@
 .confirmation-action {
   padding: 21px;
   border: 1px solid var(--line);
-  background: rgba(255, 249, 240, .72);
+  border-radius: 14px;
+  background: var(--paper);
 }
 
 .confirmation-action h2 {
   margin: 0;
   font-family: var(--display);
   font-size: 23px;
-  font-weight: 400;
+  font-weight: 600;
 }
 
 .confirmation-action h2,
@@ -512,14 +531,24 @@
 .internship-card {
   padding: 18px 20px;
   border: 1px solid var(--line);
-  background: rgba(255, 249, 240, .72);
+  border-radius: 14px;
+  background: var(--paper);
+}
+
+.internship-label {
+  display: inline-block;
+  margin-bottom: 8px;
+  color: var(--rust);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .08em;
 }
 
 .internship-card h2 {
   margin: 0;
   font-family: var(--display);
   font-size: 22px;
-  font-weight: 400;
+  font-weight: 600;
 }
 
 .internship-card p {
@@ -529,7 +558,7 @@
   font-weight: 600;
 }
 
-.internship-card > span {
+.internship-card > span:last-child {
   display: block;
   margin-top: 4px;
   color: var(--muted);
