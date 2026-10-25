@@ -44,13 +44,13 @@ export default function InternshipsPage() {
               </article>
             ))}
           </div>
-          <a className="back-link internship-back-link" href="/intern.html">← Back to Riseup.ai</a>
+          <a className="back-link internship-back-link" href="/intern.html">← Back to Riseup.AI</a>
         </section>
       </main>
       <footer className="application-footer">
         <Brand />
         <span>Built for people who build things.</span>
-        <span>© 2026 Riseup.ai</span>
+        <span>© 2026 Riseup.AI</span>
       </footer>
     </div>
   );

@@ -49,7 +49,7 @@ function ApplicationHeader() {
   return (
     <header className="application-header">
       <Brand />
-      <a className="application-home-link" href="/">Back to Riseup.ai <span aria-hidden="true">↗</span></a>
+      <a className="application-home-link" href="/">Back to Riseup.AI <span aria-hidden="true">↗</span></a>
     </header>
   );
 }
@@ -295,7 +295,7 @@ export default function ApplicationPage() {
             <span className="form-kicker">A GOOD FIRST STEP</span>
             <h1>You showed up.<br /><em>That matters.</em></h1>
             <p className="panel-description">
-              Your response is here for this browser session. It hasn’t been sent to or saved by Riseup.ai.
+              Your response is here for this browser session. It hasn’t been sent to or saved by Riseup.AI.
             </p>
             <div className="response-recap">
               <span>YOUR RESPONSE</span>
@@ -323,7 +323,7 @@ export default function ApplicationPage() {
       <footer className="application-footer">
         <Brand />
         <span>Built for people who build things.</span>
-        <span>© 2026 Riseup.ai</span>
+        <span>© 2026 Riseup.AI</span>
       </footer>
     </div>
   );
