@@ -14,19 +14,29 @@ function ApplicationHeader() {
 export default function InternshipsPage() {
   const params = new URLSearchParams(window.location.search);
   const requestedTrack = params.get('track');
-  const track = careerOptions[requestedTrack] ? requestedTrack : 'business';
+  const track = careerOptions[requestedTrack] ? requestedTrack : null;
   const requestedField = params.get('field');
-  const field = getCareerField(track, requestedField);
+  const field = track ? getCareerField(track, requestedField) : null;
 
   return (
     <div className="application-shell">
       <ApplicationHeader />
       <main className="application-main">
         <section className="application-panel internships-panel">
-          <span className="form-kicker">{careerOptions[track].label.toUpperCase()} · {field.label.toUpperCase()}</span>
-          <h1>Five ideas to <em>look into.</em></h1>
-          <p className="panel-description">Examples picked for {field.label.toLowerCase()}. They’re here to spark ideas, not represent live job openings.</p>
-          <InternshipExamples internships={field.internships} />
+          {track && field ? (
+            <>
+              <span className="form-kicker">{careerOptions[track].label.toUpperCase()} · {field.label.toUpperCase()}</span>
+              <h1>Five ideas to <em>look into.</em></h1>
+              <p className="panel-description">Examples picked for {field.label.toLowerCase()}. They’re here to spark ideas, not represent live job openings.</p>
+              <InternshipExamples internships={field.internships} />
+            </>
+          ) : (
+            <>
+              <span className="form-kicker">INTERNSHIP IDEAS</span>
+              <h1>Choose an area to <em>explore.</em></h1>
+              <p className="panel-description">Pick a career area first so the internship ideas match what you’re interested in.</p>
+            </>
+          )}
           <a className="back-link internship-back-link" href="/intern.html">← Back to the prompt</a>
         </section>
       </main>
