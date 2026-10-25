@@ -76,7 +76,7 @@ textarea:focus-visible {
   font-family: var(--display);
   font-size: 17px;
   font-weight: 600;
-  letter-spacing: .22em;
+  letter-spacing: .04em;
   text-decoration: none;
 }
 

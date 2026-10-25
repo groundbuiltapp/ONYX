@@ -56,7 +56,7 @@ export default function LandingPage() {
         <div className="container nav-inner">
           <Brand />
           <nav className="main-nav" aria-label="Main navigation">
-            <a href="#why">Why Onyx</a>
+            <a href="#why">Why Riseup.ai</a>
             <a href="#path">How it works</a>
             <a href="#who">Who it’s for</a>
           </nav>
@@ -79,7 +79,7 @@ export default function LandingPage() {
                 <a className="button" href="/intern.html">
                   Find your starting point <ArrowIcon />
                 </a>
-                <a className="text-link" href="#why">Discover Onyx</a>
+                <a className="text-link" href="#why">Discover Riseup.ai</a>
               </div>
               <div className="hero-note">
                 <span className="note-mark">✳</span>
@@ -87,7 +87,7 @@ export default function LandingPage() {
               </div>
             </div>
             <div className="hero-art">
-              <img src={bannerImage} alt="Onyx's glowing amber gemstone against a warm, sunlit backdrop" />
+              <img src={bannerImage} alt="A glowing amber gemstone against a warm, sunlit backdrop" />
               <div className="art-caption">
                 <span>YOUR NEXT CHAPTER</span>
                 <span>STARTS HERE ↗</span>
@@ -103,11 +103,11 @@ export default function LandingPage() {
 
         <section className="intro-section section-pad" id="why">
           <div className="container intro-grid">
-            <div className="section-label"><span>01</span> WHY ONYX</div>
+            <div className="section-label"><span>01</span> WHY RISEUP.AI</div>
             <div className="intro-content">
               <h2>The old way asks you to wait. <em>We’d rather open a door.</em></h2>
               <p>
-                Early careers shouldn’t be built on cold applications and lucky timing. Onyx brings
+                Early careers shouldn’t be built on cold applications and lucky timing. Riseup.ai brings
                 emerging talent closer to the people, companies, and communities that can help them
                 make their next move.
               </p>
@@ -151,7 +151,7 @@ export default function LandingPage() {
             <div className="section-label"><span>03</span> MADE TO MOVE TOGETHER</div>
             <div className="audience-heading">
               <h2>There’s room for <em>your kind of ambition.</em></h2>
-              <p>Onyx connects the people looking for a way in with those ready to make one.</p>
+              <p>Riseup.ai connects the people looking for a way in with those ready to make one.</p>
             </div>
             <div className="audience-grid">
               {audiences.map((audience) => (

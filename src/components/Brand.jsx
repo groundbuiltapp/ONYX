@@ -1,6 +1,6 @@
 export default function Brand() {
   return (
-    <a className="brand" href="/" aria-label="Onyx home">
+    <a className="brand" href="/" aria-label="Riseup.ai home">
       <svg viewBox="0 0 610 1005" aria-hidden="true" className="brand-gem">
         <defs>
           <linearGradient id="brand-gem-fill" x1="0" y1="0" x2=".35" y2="1">
@@ -20,7 +20,7 @@ export default function Brand() {
           d="M305 0C380 124 566 330 610 527C560 430 430 380 380 300C350 250 320 140 305 0Z"
         />
       </svg>
-      <span>ONYX</span>
+      <span>Riseup.ai</span>
     </a>
   );
 }
