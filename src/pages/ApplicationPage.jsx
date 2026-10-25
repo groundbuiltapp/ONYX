@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Brand from '../components/Brand.jsx';
 
-const prompts = {
+const defaultPrompts = {
   business:
     'You’re pitching a new product to a skeptical investor. They have 30 seconds to decide if they care. What’s your hook?',
   tech:
@@ -23,6 +23,28 @@ const tracks = [
   },
 ];
 
+const fields = {
+  business: ['sales', 'marketing', 'partnerships', 'ai-engineering', 'product', 'other'],
+  tech: ['sales', 'marketing', 'partnerships', 'ai-engineering', 'product', 'other'],
+};
+
+const prompts = {
+  sales: "You're on a call with a buyer who says they already have a vendor. You have 60 seconds to earn a second meeting. What do you say?",
+  marketing: "Your product has a 2% click rate on its ads. You have 60 seconds to tell your boss what to test first. What's your plan?",
+  partnerships: 'A company you admire has 30 seconds to decide whether to co-host an event with a student group. Make the case.',
+  'ai-engineering': "Your team's chatbot gives confident wrong answers to customers. You have 60 seconds to explain how you'd fix it. What's your approach?",
+  product: 'Users sign up but never finish onboarding. You have 60 seconds to pitch the one change you’d test first. What is it, and why?',
+};
+
+const fieldLabels = {
+  sales: 'Sales',
+  marketing: 'Marketing',
+  partnerships: 'Partnerships',
+  'ai-engineering': 'AI engineering',
+  product: 'Product',
+  other: 'Other',
+};
+
 function ApplicationHeader() {
   return (
     <header className="application-header">
@@ -33,52 +55,103 @@ function ApplicationHeader() {
 }
 
 export default function ApplicationPage() {
-  const [step, setStep] = useState('landing');
-  const [track, setTrack] = useState('');
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [response, setResponse] = useState('');
-  const [timeLeft, setTimeLeft] = useState(60);
+  const [flow, setFlow] = useState({
+    step: 'landing',
+    track: '',
+    field: '',
+    prompt: '',
+    name: '',
+    email: '',
+    response: '',
+    timeLeft: 60,
+    saveMessage: '',
+  });
+  const timerRef = useRef(null);
 
   useEffect(() => {
-    if (step !== 'prompt' || timeLeft === 0) return undefined;
+    if (flow.step !== 'prompt') return undefined;
 
-    const timer = window.setInterval(() => {
-      setTimeLeft((time) => Math.max(0, time - 1));
+    timerRef.current = window.setInterval(() => {
+      setFlow((current) => ({
+        ...current,
+        timeLeft: Math.max(0, current.timeLeft - 1),
+      }));
     }, 1000);
 
-    return () => window.clearInterval(timer);
-  }, [step, timeLeft]);
+    return () => {
+      window.clearInterval(timerRef.current);
+      timerRef.current = null;
+    };
+  }, [flow.step]);
+
+  useEffect(() => {
+    if (flow.timeLeft === 0 && timerRef.current !== null) {
+      window.clearInterval(timerRef.current);
+      timerRef.current = null;
+    }
+  }, [flow.timeLeft]);
 
   function chooseTrack(selectedTrack) {
-    setTrack(selectedTrack);
-    setStep('signup');
+    setFlow((current) => ({ ...current, track: selectedTrack, step: 'field' }));
+  }
+
+  function chooseField(selectedField) {
+    setFlow((current) => ({
+      ...current,
+      field: selectedField,
+      prompt: prompts[selectedField] || defaultPrompts[current.track],
+      step: 'signup',
+    }));
   }
 
   function startPrompt(event) {
     event.preventDefault();
-    setTimeLeft(60);
-    setStep('prompt');
+    setFlow((current) => ({ ...current, timeLeft: 60, step: 'prompt' }));
   }
 
-  function returnToTracks() {
-    setStep('landing');
+  function submitResponse(event) {
+    event.preventDefault();
+    if (flow.timeLeft === 0) return;
+    setFlow((current) => ({ ...current, step: 'confirmation' }));
+  }
+
+  function savePitch() {
+    try {
+      window.localStorage.setItem('onyx-saved-pitch', JSON.stringify({
+        response: flow.response,
+        track: flow.track,
+      }));
+      setFlow((current) => ({
+        ...current,
+        saveMessage: 'Saved in this browser only.',
+      }));
+    } catch {
+      setFlow((current) => ({
+        ...current,
+        saveMessage: 'Could not save this pitch in your browser.',
+      }));
+    }
   }
 
   function restart() {
-    setStep('landing');
-    setTrack('');
-    setName('');
-    setEmail('');
-    setResponse('');
-    setTimeLeft(60);
+    setFlow({
+      step: 'landing',
+      track: '',
+      field: '',
+      prompt: '',
+      name: '',
+      email: '',
+      response: '',
+      timeLeft: 60,
+      saveMessage: '',
+    });
   }
 
   return (
     <div className="application-shell">
       <ApplicationHeader />
       <main className="application-main">
-        {step === 'landing' && (
+        {flow.step === 'landing' && (
           <>
             <section className="application-hero">
               <div className="application-eyebrow"><span /> YOUR FIRST STEP</div>
@@ -96,7 +169,7 @@ export default function ApplicationPage() {
                   <span className="form-kicker">PICK YOUR DIRECTION</span>
                   <h2 id="track-heading">Where do you want to start?</h2>
                 </div>
-                <span className="step-count">01 <span>/ 03</span></span>
+                <span className="step-count">01 <span>/ 04</span></span>
               </div>
               <div className="track-grid">
                 {tracks.map((item) => (
@@ -119,13 +192,36 @@ export default function ApplicationPage() {
           </>
         )}
 
-        {step === 'signup' && (
+        {flow.step === 'field' && (
+          <section className="application-panel field-panel">
+            <button className="back-link" type="button" onClick={() => setFlow((current) => ({ ...current, step: 'landing' }))}>← <span>Back to tracks</span></button>
+            <span className="form-kicker">STEP 02 <span>/ 04</span></span>
+            <h1>What field are you going into?</h1>
+            <p className="panel-description">
+              Pick the area that feels closest. We’ll find a prompt to match.
+            </p>
+            <div className="field-options">
+              {fields[flow.track].map((fieldId) => (
+                <button
+                  className="field-option"
+                  key={fieldId}
+                  type="button"
+                  onClick={() => chooseField(fieldId)}
+                >
+                  {fieldLabels[fieldId]}<span aria-hidden="true">→</span>
+                </button>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {flow.step === 'signup' && (
           <section className="application-panel">
-            <button className="back-link" type="button" onClick={returnToTracks}>← <span>Back to tracks</span></button>
-            <span className="form-kicker">STEP 02 <span>/ 03</span></span>
+            <button className="back-link" type="button" onClick={() => setFlow((current) => ({ ...current, step: 'field' }))}>← <span>Back to field</span></button>
+            <span className="form-kicker">STEP 03 <span>/ 04</span></span>
             <h1>First, the <em>introductions.</em></h1>
             <p className="panel-description">
-              You picked {track === 'business' ? 'Business' : 'Technology'}. What should we call you?
+              You picked {flow.track === 'business' ? 'Business' : 'Technology'}. What should we call you?
             </p>
             <form className="application-form" onSubmit={startPrompt}>
               <label htmlFor="applicant-name">Your name</label>
@@ -133,60 +229,59 @@ export default function ApplicationPage() {
                 autoComplete="name"
                 id="applicant-name"
                 name="name"
-                onChange={(event) => setName(event.target.value)}
+                onChange={(event) => setFlow((current) => ({ ...current, name: event.target.value }))}
                 placeholder="e.g. Jordan Lee"
                 required
-                value={name}
+                value={flow.name}
               />
               <label htmlFor="applicant-email">Email address</label>
               <input
                 autoComplete="email"
                 id="applicant-email"
                 name="email"
-                onChange={(event) => setEmail(event.target.value)}
+                onChange={(event) => setFlow((current) => ({ ...current, email: event.target.value }))}
                 placeholder="you@example.com"
                 required
                 type="email"
-                value={email}
+                value={flow.email}
               />
               <button className="button application-submit" type="submit">
                 Let’s do this <span aria-hidden="true">→</span>
               </button>
               <p className="privacy-note form-privacy">
-                This demo doesn’t send or store your personal information.
+                We’ll use your email only to send your pitch card and internship matches.
               </p>
             </form>
           </section>
         )}
 
-        {step === 'prompt' && (
+        {flow.step === 'prompt' && (
           <section className="application-panel prompt-panel">
-            <button className="back-link" type="button" onClick={() => setStep('signup')}>← <span>Back to details</span></button>
-            <span className="form-kicker">STEP 03 <span>/ 03</span></span>
-            <p className="applicant-greeting">A little something for you, {name.trim().split(/\s+/)[0]}.</p>
+            <button className="back-link" type="button" onClick={() => setFlow((current) => ({ ...current, step: 'signup' }))}>← <span>Back to details</span></button>
+            <span className="form-kicker">STEP 04 <span>/ 04</span></span>
+            <p className="applicant-greeting">A little something for you, {flow.name.trim().split(/\s+/)[0] || 'there'}.</p>
             <h1>Your perspective <em>is the point.</em></h1>
             <div className="prompt-card">
-              <div className="prompt-card-top"><span>YOUR {track.toUpperCase()} PROMPT</span><span>✳</span></div>
-              <p>{prompts[track]}</p>
+              <div className="prompt-card-top"><span>YOUR {fieldLabels[flow.field].toUpperCase()} PROMPT</span><span>✳</span></div>
+              <p>{flow.prompt}</p>
             </div>
-            <div className={`timer-display${timeLeft <= 10 ? ' timer-urgent' : ''}`} aria-live="polite">
-              <span>{String(Math.floor(timeLeft / 60)).padStart(2, '0')}:{String(timeLeft % 60).padStart(2, '0')}</span>
-              <span>{timeLeft === 0 ? 'Time’s up - finish your thought.' : 'A minute. Your words.'}</span>
+            <div className="timer-display" aria-live="polite">
+              {flow.timeLeft === 0
+                ? <span>Time&apos;s up</span>
+                : <><span>{String(Math.floor(flow.timeLeft / 60)).padStart(2, '0')}:{String(flow.timeLeft % 60).padStart(2, '0')}</span><span>A minute. Your words.</span></>}
             </div>
-            <form className="application-form response-form" onSubmit={(event) => {
-              event.preventDefault();
-              setStep('confirmation');
-            }}>
+            <form className="application-form response-form" onSubmit={submitResponse}>
               <label htmlFor="applicant-response">Your answer</label>
               <textarea
                 id="applicant-response"
-                onChange={(event) => setResponse(event.target.value)}
+                disabled={flow.timeLeft === 0}
+                onChange={(event) => setFlow((current) => ({ ...current, response: event.target.value }))}
                 placeholder="Start wherever you are. Write it in your own words..."
                 required
                 rows="6"
-                value={response}
+                value={flow.response}
               />
-              <button className="button application-submit" type="submit">
+              <button className="button application-submit" disabled={flow.timeLeft === 0} type="submit">
                 Keep my response <span aria-hidden="true">→</span>
               </button>
               <p className="privacy-note form-privacy">Your response stays in this browser and isn’t sent to a server.</p>
@@ -194,7 +289,7 @@ export default function ApplicationPage() {
           </section>
         )}
 
-        {step === 'confirmation' && (
+        {flow.step === 'confirmation' && (
           <section className="application-panel confirmation-panel" aria-live="polite">
             <div className="confirmation-symbol" aria-hidden="true">✳</div>
             <span className="form-kicker">A GOOD FIRST STEP</span>
@@ -204,9 +299,24 @@ export default function ApplicationPage() {
             </p>
             <div className="response-recap">
               <span>YOUR RESPONSE</span>
-              <p>{response}</p>
+              <p>{flow.response}</p>
             </div>
-            <button className="button" type="button" onClick={restart}>Start over <span aria-hidden="true">↗</span></button>
+            <div className="confirmation-actions">
+              <section className="confirmation-action">
+                <h2>Save your pitch</h2>
+                <p>Create an account so this doesn’t disappear when you close the tab.</p>
+                <button className="button" type="button" onClick={savePitch}>
+                  {flow.saveMessage.startsWith('Saved') ? 'Saved' : 'Save my pitch'}
+                </button>
+                {flow.saveMessage && <p className="save-message" role="status">{flow.saveMessage}</p>}
+              </section>
+              <section className="confirmation-action">
+                <h2>See internships for your track</h2>
+                <a className="button button-secondary" href={`/internships.html?track=${flow.track}`}>
+                  View 3 {flow.track === 'business' ? 'business' : 'technology'} internships
+                </a>
+              </section>
+            </div>
           </section>
         )}
       </main>

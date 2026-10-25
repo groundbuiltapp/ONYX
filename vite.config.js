@@ -12,6 +12,7 @@ export default defineConfig({
       input: {
         main: resolve(root, 'index.html'),
         intern: resolve(root, 'intern.html'),
+        internships: resolve(root, 'internships.html'),
       },
     },
   },

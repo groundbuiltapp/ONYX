@@ -250,6 +250,38 @@
   line-height: 1.8;
 }
 
+.field-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.field-option {
+  display: flex;
+  min-height: 58px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 17px;
+  border: 1px solid var(--line);
+  background: rgba(255, 249, 240, .72);
+  color: var(--ember);
+  font: inherit;
+  font-size: 12px;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color .2s, background-color .2s;
+}
+
+.field-option:hover {
+  border-color: var(--flame);
+  background: var(--paper);
+}
+
+.field-option span {
+  color: var(--flame);
+}
+
 .application-form {
   display: grid;
   gap: 9px;
@@ -348,10 +380,6 @@
   font-variant-numeric: tabular-nums;
 }
 
-.timer-urgent > span:first-child {
-  color: #9e2415;
-}
-
 .response-form {
   margin-top: 19px;
 }
@@ -410,6 +438,107 @@
   line-height: 1.8;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
+}
+
+.confirmation-actions {
+  display: grid;
+  gap: 21px;
+  text-align: left;
+}
+
+.confirmation-action {
+  padding: 21px;
+  border: 1px solid var(--line);
+  background: rgba(255, 249, 240, .72);
+}
+
+.confirmation-action h2 {
+  margin: 0;
+  font-family: var(--display);
+  font-size: 23px;
+  font-weight: 400;
+}
+
+.confirmation-action h2,
+.confirmation-action h3,
+.confirmation-action p {
+  background: transparent;
+}
+
+.confirmation-action h2::selection,
+.confirmation-action h3::selection,
+.confirmation-action p::selection {
+  background: transparent;
+  color: inherit;
+}
+
+.confirmation-action mark {
+  background: transparent;
+  color: inherit;
+}
+
+.confirmation-action p {
+  margin: 7px 0 15px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.confirmation-action .button {
+  width: 100%;
+  justify-content: space-between;
+}
+
+.confirmation-action .button-secondary {
+  margin-top: 15px;
+}
+
+.save-message {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.internships-panel .panel-description {
+  margin-top: 4px;
+}
+
+.internship-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 26px;
+}
+
+.internship-card {
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  background: rgba(255, 249, 240, .72);
+}
+
+.internship-card h2 {
+  margin: 0;
+  font-family: var(--display);
+  font-size: 22px;
+  font-weight: 400;
+}
+
+.internship-card p {
+  margin: 5px 0 0;
+  color: var(--ember);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.internship-card > span {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.internship-back-link {
+  margin-top: 24px;
+  text-decoration: none;
 }
 
 .application-footer {
@@ -473,6 +602,10 @@
 
   .track-grid {
     gap: 12px;
+  }
+
+  .field-options {
+    grid-template-columns: 1fr;
   }
 
   .track-option {
