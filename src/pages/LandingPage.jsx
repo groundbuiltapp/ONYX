@@ -1,5 +1,5 @@
 import bannerImage from '../../banner.png';
-import Brand from '../components/Brand.jsx';
+import Brand, { BrandMark } from '../components/Brand.jsx';
 import SiteFooter from '../components/SiteFooter.jsx';
 
 const steps = [
@@ -70,7 +70,7 @@ export default function LandingPage() {
         <section className="hero">
           <div className="container hero-layout">
             <div className="hero-copy">
-              <div className="eyebrow"><span /> A new way in</div>
+              <div className="eyebrow"><BrandMark className="brand-gem eyebrow-mark" /> A new way in</div>
               <h1>Make your next move <em>mean something.</em></h1>
               <p className="hero-lede">
                 Real access to the people and places that move careers forward. No applications into the void.
@@ -82,7 +82,7 @@ export default function LandingPage() {
                 <a className="text-link" href="#why">Discover Riseup.AI</a>
               </div>
               <div className="hero-note">
-                <span className="note-mark">✳</span>
+                <BrandMark className="brand-gem note-mark" />
                 <span>For the ones already building what’s next.</span>
               </div>
             </div>
